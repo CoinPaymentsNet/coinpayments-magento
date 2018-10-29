@@ -1,0 +1,30 @@
+<?php
+$session = Mage::getSingleton('core/session');
+$data = json_decode($session->getCoinpaymentsTransactionResponse());
+?>
+
+<?php if (strtolower($data->error) == 'ok'): ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('Your order has been received.') ?></h1>
+    </div>
+    <h2 class="sub-title"><?php echo $this->__('You must complete the transaction!') ?></h2>
+    <p>You can check transaction status and info follow this <a href="<?php echo $data->result->status_url; ?>">link</a>
+    </p>
+    <div>
+        <div>
+            <p><span><?php echo $this->__('Address'); ?></span>: <span><?php echo $data->result->address ?></span></p>
+        </div>
+        <div>
+            <p><span><?php echo $this->__('Amount'); ?></span>: <span><?php echo $data->result->amount ?></span></p>
+        </div>
+        <div>
+            <p><span><?php echo $this->__('QR code'); ?></span>: <span><img class="thumb" src="<?php echo $data->result->qrcode_url; ?>"></span></p>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('We have problem with your order.'); ?></h1>
+    </div>
+    <h2 class="sub-title"><?php echo $this->__('Some error ocurrent'); ?></h2>
+    <p><?php echo $data->error ?></p>
+<?php endif; ?>
