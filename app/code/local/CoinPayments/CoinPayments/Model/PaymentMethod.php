@@ -22,9 +22,9 @@ class CoinPayments_CoinPayments_Model_PaymentMethod extends Mage_Payment_Model_M
     public function assignData($data)
     {
         $session = Mage::getSingleton('core/session');
-        if ($data->getData('_buyer_email')) {
-            $session->setBuyerEmail($data->getData('_buyer_email'));
-        }
+//        if ($data->getData('_buyer_email')) {
+//            $session->setBuyerEmail($data->getData('_buyer_email'));
+//        }
 
         if ($data->getData('_currency2')) {
             $session->setCurrency2($data->getData('_currency2'));
@@ -38,9 +38,9 @@ class CoinPayments_CoinPayments_Model_PaymentMethod extends Mage_Payment_Model_M
         parent::validate();
 
         $session = Mage::getSingleton('core/session');
-        if (!$session->getBuyerEmail()) {
-            $errorMsg = $this->_getHelper()->__("Buyer Email is a required field.\n");
-        }
+//        if (!$session->getBuyerEmail()) {
+//            $errorMsg = $this->_getHelper()->__("Buyer Email is a required field.\n");
+//        }
 
         if (!$session->getCurrency2()) {
             $errorMsg .= $this->_getHelper()->__('Currency is a required field.');

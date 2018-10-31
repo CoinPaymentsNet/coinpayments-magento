@@ -28,17 +28,21 @@ class CoinPayments_CoinPayments_Helper_Data extends Mage_Core_Helper_Data
             'amount' => $order->getBaseGrandTotal(),
             'currency1' => $storeCurrencty,
             'currency2' => $session->getCurrency2(),
-            'buyer_email' => $session->getBuyerEmail() ? $session->getBuyerEmail() : $order->getCustomerEmail(),
+            'buyer_email' =>  $order->getCustomerEmail(),
             'buyer_name' => $order->getCustomerFirstname() . ' ' . $order->getCustomerLastname(),
             'item_name' => implode(', ', $skus),
             'invoice' => $order->getIncrementId(),
             'custom' => Mage::app()->getStore()->getStoreId(),
-            'ipn_url' => Mage::getUrl('coinpayments/payment/response', array('_secure' => true))
+            'ipn_url' => Mage::getUrl('coinpayments/payment/response', array('_secure' => true)),
         ];
 
         return $data;
     }
 
+    /**
+     * @param $data
+     * @return array
+     */
     public function getTransactionRequestHeaders($data)
     {
         $privateApiKey = Mage::getStoreConfig('payment/coinpayments/api_private_key');

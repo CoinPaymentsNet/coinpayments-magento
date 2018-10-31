@@ -7,9 +7,7 @@ $data = json_decode($session->getCoinpaymentsTransactionResponse());
     <div class="page-title">
         <h1><?php echo $this->__('Your order has been received.') ?></h1>
     </div>
-    <h2 class="sub-title"><?php echo $this->__('You must complete the transaction!') ?></h2>
-    <p>You can check transaction status and info follow this <a href="<?php echo $data->result->status_url; ?>">link</a>
-    </p>
+    <h3><a href="<?php echo $data->result->status_url; ?>" target="_blank">Status link</a></h3>
     <div>
         <div>
             <p><span><?php echo $this->__('Address'); ?></span>: <span><?php echo $data->result->address ?></span></p>

@@ -16,7 +16,7 @@ class CoinPayments_CoinPayments_Block_Info_CoinPayments extends Mage_Payment_Blo
         $session = Mage::getSingleton('core/session');
 
         $data = array();
-        $data[Mage::helper('payment')->__('Buyer Email')] = $session->getBuyerEmail();
+//        $data[Mage::helper('payment')->__('Buyer Email')] = $session->getBuyerEmail();
         $data[Mage::helper('payment')->__('Currency')] = $session->getCurrency2();
 
         return $data;

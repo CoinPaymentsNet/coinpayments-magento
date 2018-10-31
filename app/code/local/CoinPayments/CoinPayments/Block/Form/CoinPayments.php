@@ -59,6 +59,9 @@ class CoinPayments_CoinPayments_Block_Form_CoinPayments extends Mage_Payment_Blo
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getGrandTotal()
     {
         $grandTotal = Mage::getModel('checkout/session')->getQuote()->getGrandTotal();
