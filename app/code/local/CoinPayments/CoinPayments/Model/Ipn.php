@@ -55,9 +55,8 @@ class Coinpayments_CoinPayments_Model_Ipn extends Mage_Payment_Model_Method_Abst
         $serverHmac = hash_hmac(
             "sha512",
             http_build_query($this->_data),
-            trim($this->_coinpaymentsStoreConfig['api_private_key'])
+            trim($this->_coinpaymentsStoreConfig['ipn_secret'])
         );
-
         if ($this->_hmac != $serverHmac) {
             return false;
         }
@@ -66,15 +65,15 @@ class Coinpayments_CoinPayments_Model_Ipn extends Mage_Payment_Model_Method_Abst
 
     public function updateOrderPayment()
     {
-        if ($this->_data['status'] == 100) {
-            $this->_currentOrder->setTotalPaid($this->_data['amount1']);
+        if ($this->_data->status == 100) {
+            $this->_currentOrder->setTotalPaid($this->_data->amount1);
         }
         return $this;
     }
 
     public function updateOrderStatus()
     {
-        if ($this->_data['status'] == 100) {
+        if ($this->_data->status == 100) {
             $this->_currentOrder
                 ->setState(Mage_Sales_Model_Order::STATE_PROCESSING)
                 ->setStatus(Mage_Sales_Model_Order::STATE_PROCESSING);
@@ -91,15 +90,15 @@ class Coinpayments_CoinPayments_Model_Ipn extends Mage_Payment_Model_Method_Abst
 
     public function addToOrderHistory()
     {
-        $str = 'CoinPayments.net Payment Status: <strong>' . $this->_data['status'] . '</strong> ' . $this->_data['status_text'] . '<br />';
+        $str = 'CoinPayments.net Payment Status: <strong>' . $this->_data->status . '</strong> ' . $this->_data->status_text . '<br />';
 
-        if ($this->_data['status'] == 100) {
-            $str .= 'Transaction ID: ' . $this->_data['txn_id']
+        if ($this->_data->status == 100) {
+            $str .= 'Transaction ID: ' . $this->_data->txn_id
                 . '<br />';
-            $str .= 'Original Amount: ' . sprintf('%.08f', $this->_data['amount1'])
-                . ' ' . $this->_data['currency1'] . '<br />';
-            $str .= 'Received Amount: ' . sprintf('%.08f', $this->_data['amount2'])
-                . ' ' . $this->_data['currency2'];
+            $str .= 'Original Amount: ' . sprintf('%.08f', $this->_data->amount1)
+                . ' ' . $this->_data->currency1 . '<br />';
+            $str .= 'Received Amount: ' . sprintf('%.08f', $this->_data->amount2)
+                . ' ' . $this->_data->currency2;
         }
         $this->_currentOrder->addStatusHistoryComment($str);
         return $this;
@@ -107,15 +106,15 @@ class Coinpayments_CoinPayments_Model_Ipn extends Mage_Payment_Model_Method_Abst
 
     public function addTransactionToOrder()
     {
-        if ($this->_data['status'] == 100) {
+        if ($this->_data->status == 100) {
             $payment = $this->_currentOrder->getPayment();
-            $payment->setTransactionId($this->_data['txn_id'])
+            $payment->setTransactionId($this->_data->txn_id)
                 ->setCurrencyCode($this->_currentOrder->getBaseCurrencyCode())
                 ->setPreparedMessage('Transaction paid')
                 ->setIsTransactionClosed(true)
                 ->setAdditionalInformation(
                     Mage_Sales_Model_Order_Payment_Transaction::RAW_DETAILS,
-                    $this->_data
+                    (array)$this->_data
                 )
                 ->registerCaptureNotification($this->_currentOrder->getBaseGrandTotal());
             $payment->save();

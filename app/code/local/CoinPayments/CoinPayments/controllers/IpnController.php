@@ -15,13 +15,13 @@ class CoinPayments_CoinPayments_IpnController extends Mage_Core_Controller_Front
     public function handleAction()
     {
         $this->getResponse()->setHeader('Content-Type', 'application/json');
-        $request = $this->getRequest()->getParams();
+        $request = (object)$this->getRequest()->getParams();
         $hmac = $this->getRequest()->getHeader('HMAC');
-        $order = Mage::getModel('sales/order')->loadByIncrementId($request['invoice']);
+        $order = Mage::getModel('sales/order')->loadByIncrementId($request->invoice);
         $error = [];
 
         if (!$order->getId()) {
-            $order = Mage::getModel('sales/order')->load($request['invoice']);
+            $order = Mage::getModel('sales/order')->load($request->invoice);
         }
 
         $this->_ipnModel
