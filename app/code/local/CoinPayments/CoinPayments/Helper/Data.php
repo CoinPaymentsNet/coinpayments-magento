@@ -12,7 +12,7 @@ class CoinPayments_CoinPayments_Helper_Data extends Mage_Core_Helper_Data
     {
         $publicApiKey = Mage::getStoreConfig('payment/coinpayments/api_public_key');
         $session = Mage::getSingleton('core/session');
-        $storeCurrencty = Mage::app()->getStore()->getCurrentCurrencyCode();
+//        $storeCurrencty = Mage::app()->getStore()->getCurrentCurrencyCode();
 
         $items = $order->getAllVisibleItems();
 
@@ -25,9 +25,10 @@ class CoinPayments_CoinPayments_Helper_Data extends Mage_Core_Helper_Data
             'version' => 1,
             'key' => $publicApiKey,
             'cmd' => 'create_transaction',
-            'amount' => $order->getBaseGrandTotal(),
-            'currency1' => $storeCurrencty,
-            'currency2' => $session->getCurrency2(),
+            'amount' => Mage::getModel('coinpayments/api_rate')
+                ->getConverted($session->getCurrency2(), $order->getBaseGrandTotal()),
+            'currency1' => $session->getCurrency2(),
+            'currency2' => Mage::getStoreConfig('payment/coinpayments/receive_currency'),
             'buyer_email' =>  $order->getCustomerEmail(),
             'buyer_name' => $order->getCustomerFirstname() . ' ' . $order->getCustomerLastname(),
             'item_name' => implode(', ', $skus),

@@ -39,6 +39,7 @@ class CoinPayments_CoinPayments_DirectController extends Mage_Core_Controller_Fr
         $result = curl_exec($curl);
         $responseData = json_decode($result);
 
+        Mage::log(print_r($responseData, true), null, 'response.log');
         if ($responseData->error == 'ok') {
             $order->addStatusHistoryComment("Transaction was created!<br> Status Url: " . $responseData->result->status_url);
             $order->setStatus(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT)->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT);
