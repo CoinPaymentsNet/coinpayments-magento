@@ -11,9 +11,16 @@ class CoinPayments_CoinPayments_Block_Form_CoinPayments extends Mage_Payment_Blo
     {
         parent::_construct();
         $isDirect = Mage::getStoreConfig('payment/coinpayments/is_direct_mode');
+        $mark = Mage::getConfig()->getBlockClassName('core/template');
+        $mark = new $mark;
+        $mark->setTemplate('coinpayments/form/mark.phtml')
+            ->setPaymentAcceptanceMarkSrc(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) .
+                'frontend/base/default/images/coinpayments_logo.png');
         if ($isDirect) {
             $this->setTemplate('coinpayments/form/coinpayments.phtml');
         }
+        $this->setMethodTitle('')->setMethodLabelAfterHtml($mark->toHtml());
+
         $this->_publicApiKey = Mage::getStoreConfig('payment/coinpayments/api_public_key');
         $this->_privateApiKey = Mage::getStoreConfig('payment/coinpayments/api_private_key');
     }

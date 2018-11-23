@@ -63,15 +63,5 @@ class CoinPayments_CoinPayments_Model_PaymentMethod extends Mage_Payment_Model_M
         }
         return Mage::getUrl('coinpayments/payment/redirect', array('_secure' => true));
     }
-
-    public function getTitle()
-    {
-        $imageUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) .
-            'frontend/base/default/images/coinpayments_logo.png';
-        $image = "<img src='$imageUrl' style='vertical-align: -webkit-baseline-middle;
-                                              width: 38px;
-                                              height: 53px;'>";
-        return $image . ' ' . parent::getTitle();
-    }
 }
 
