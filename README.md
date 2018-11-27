@@ -29,7 +29,7 @@ Congratulations – you did it! Your Magento store now has Coinpayments as a pay
 <br><br>
 <h3>Install via FTP</h3>
 <ol>
-    <li>Download plugin <a href="https://github.com/CoinPaymentsNet/coinpayments-magento">here</a>;</li>
+    <li>Download plugin <a target="_blank" href="https://github.com/CoinPaymentsNet/coinpayments-magento">here</a>;</li>
     <li>Extract archive and upload to root directory of your Magento store;</li>
     <li>Login to Admin panel;</li>
     <li>Go to <b>System » Configuration</b>;</li>
