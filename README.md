@@ -9,7 +9,7 @@ In Magento Connect Manager, find the “Paste extension key to install” field,
 <br>
 Then, click “Install” followed by “Proceed” and wait for the installation process to complete. Afterwards, click “Return to Admin”.
 <br><br>
-<b>3. Locate CoinGate extension in Payment Methods.</b><br>
+<b>3. Locate Coinpayments extension in Payment Methods.</b><br>
 Go to System » Configuration, find the SALES sub-menu and then click on Payment Methods – from there, scroll down and locate “Coinpayments.net”.
 <br><br>
 <b>4. Enable and configure the Magento Coinpayments extension</b><br>
