@@ -21,7 +21,7 @@ class CoinPayments_CoinPayments_Helper_Data extends Mage_Core_Helper_Data
             $skus[] = $item->getName() . ' ' . $item->get;
         }
 
-        $data = [
+        $data = array(
             'version' => 1,
             'key' => $publicApiKey,
             'cmd' => 'create_transaction',
@@ -35,7 +35,7 @@ class CoinPayments_CoinPayments_Helper_Data extends Mage_Core_Helper_Data
             'invoice' => $order->getIncrementId(),
             'custom' => Mage::app()->getStore()->getStoreId(),
             'ipn_url' => Mage::getUrl('coinpayments/ipn/handle', array('_secure' => true)),
-        ];
+        );
 
         return $data;
     }

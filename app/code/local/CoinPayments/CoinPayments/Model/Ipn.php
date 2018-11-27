@@ -125,11 +125,11 @@ class Coinpayments_CoinPayments_Model_Ipn extends Mage_Payment_Model_Method_Abst
     public function validateIpn()
     {
         if (!$this->_currentOrder->getId()) {
-            return ['error' => 'order not found'];
+            return array('error' => 'order not found');
         }
 
         if ($this->_currentOrder->getStatus() == Mage_Sales_Model_Order::STATE_PROCESSING) {
-            return ['error' => 'order is already paid'];
+            return array('error' => 'order is already paid');
         }
 
         return false;

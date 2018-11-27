@@ -14,18 +14,18 @@ class CoinPayments_CoinPayments_Model_System_Config_Source_Rate
     {
         $rates = Mage::getModel('coinpayments/api_rate')->getAvailableRates();
 
-        $options = [];
-        $options[] = [
+        $options = array();
+        $options[] = array(
             'value' => '',
             'label' => $this->_empty,
-        ];
+        );
 
         if (is_object($rates)) {
             foreach ($rates as $key => $rate) {
-                $options[] = ['value' => $key, 'label' => $rate->name];
+                $options[] = array('value' => $key, 'label' => $rate->name);
             }
         } else {
-            $options[] = ['value' => '', 'label' => $rates];
+            $options[] = array('value' => '', 'label' => $rates);
         }
 
         return $options;

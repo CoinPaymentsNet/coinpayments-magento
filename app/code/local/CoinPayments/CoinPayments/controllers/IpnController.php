@@ -18,7 +18,7 @@ class CoinPayments_CoinPayments_IpnController extends Mage_Core_Controller_Front
         $request = (object)$this->getRequest()->getParams();
         $hmac = $this->getRequest()->getHeader('HMAC');
         $order = Mage::getModel('sales/order')->loadByIncrementId($request->invoice);
-        $error = [];
+        $error = array();
 
         if (!$order->getId()) {
             $order = Mage::getModel('sales/order')->load($request->invoice);
@@ -57,6 +57,6 @@ class CoinPayments_CoinPayments_IpnController extends Mage_Core_Controller_Front
             return $this->getResponse()->setBody(json_encode($error));
         }
 
-        return $this->getResponse()->setBody(json_encode(['error' => 'OK']));
+        return $this->getResponse()->setBody(json_encode(array('error' => 'OK')));
     }
 }
