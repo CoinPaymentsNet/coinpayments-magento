@@ -4,17 +4,17 @@
 <b>1. Login to your Magento Admin panel and go to Magento Connect Manager.</b><br>
 After logging in, go to System » Magento Connect » Magento Connect Manager. Enter your login credentials again if requested. 
 <br><br>
-<b>2. Paste Coinpayments extension URL and install.</b><br>
+<b>2. Paste CoinPayments extension URL and install.</b><br>
 In Magento Connect Manager, find the “Paste extension key to install” field, and copy paste the following URL: 
 <br>
 Then, click “Install” followed by “Proceed” and wait for the installation process to complete. Afterwards, click “Return to Admin”.
 <br><br>
-<b>3. Locate Coinpayments extension in Payment Methods.</b><br>
+<b>3. Locate CoinPayments extension in Payment Methods.</b><br>
 Go to System » Configuration, find the SALES sub-menu and then click on Payment Methods – from there, scroll down and locate “Coinpayments.net”.
 <br><br>
-<b>4. Enable and configure the Magento Coinpayments extension</b><br>
+<b>4. Enable and configure the Coinpayments extension for Magento</b><br>
 <ul>
-    <li>To enable the Magento Coinpayments extension, set “Enabled” to “Yes”.</li>
+    <li>To enable the CoinPayments extension for Magento, set “Enabled” to “Yes”.</li>
     <li>“Title” will appear on your checkout page – edit them as you feel is appropriate.</li>
     <li>Enter your API credentials – Merchant ID, IPN secret... You can find this keys in your coinpayments account</li>
 </ul>
