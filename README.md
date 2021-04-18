@@ -1,6 +1,6 @@
 <h1>INSTALATION<h1>
 
-<h3>Install via magento admin</h3>
+<h3>Install via Magento 1 admin</h3>
 <b>1. Login to your Magento Admin panel and go to Magento Connect Manager.</b><br>
 After logging in, go to System » Magento Connect » Magento Connect Manager. Enter your login credentials again if requested. 
 <br><br>
